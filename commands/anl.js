@@ -44,7 +44,7 @@ async function execute(message, args) {
    message.channel.send({embed: msgEmbed})
   })
   .catch(error => {
-   message.reply("error");
+   message.reply("not found or error");
   });
 }
 
