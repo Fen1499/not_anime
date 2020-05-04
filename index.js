@@ -9,6 +9,7 @@ const Discord = require('discord.js');
 // create a new Discord client
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+//20 dias depois não lembro mais disso, insere os nomes dos arquivos na collection eu acho
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 // when the client is ready, run this code
@@ -26,18 +27,24 @@ for (const file of commandFiles) {
 }
 
 //read the messages
-client.on('message', (message) => {//Esse () é opcional, da pra passar só o argumento sem () :T
+//Esse () é opcional, da pra passar só o argumento sem (), que fica horrivel de ler
+client.on('message', (message) => {
 
   ///SETUP INICIAL, SEPARA COMMAND DE ARGS
   if (!message.content.startsWith(config.prefix) || message.author.bot) return;
   const args = message.content.slice(config.prefix.length).split(/ +/);
-  const commandName = args.shift().toLowerCase();//shift devia se achamar pop
+  //shift devia se achamar pop, mas já existe um pop
+  const commandName = args.shift().toLowerCase();
 
   if (!client.commands.has(commandName)) return;//
   
+  //command é o arquivo com o nome correspondente, eles seguem um padrão bem simples
   const command = client.commands.get(commandName);
-  if(command.args && args.length) {
+  if(command.args && !args.length) {
     message.reply("args error :sad:");
+    //Manter isso aqui por enquanto pra lidar com args error
+    //Depois isso aqui pode retornar um help <command>, mas ele não existe ainda
+    return;
   }
 
   try {
