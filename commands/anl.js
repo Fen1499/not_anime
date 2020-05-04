@@ -3,7 +3,7 @@ const gqlQuery = require('../utils/anlsearch.js');
 
 async function execute(message, args) {
   const baseURL = 'https://graphql.anilist.co';
-  const gqlVars = {"search": "fullmetal"}
+  const gqlVars = {"search": args.join(" ")}
 
   //Embed que vai na mensagem, tem o objeto "med" como argumento \u200b
   const makeEmbed = med => ({
@@ -52,6 +52,6 @@ async function execute(message, args) {
 module.exports = {
 	name: 'anl',
 	description: 'info',
-  args: false,
+  args: true,
 	execute
 };
