@@ -1,9 +1,11 @@
 async function execute(message, args) {
+  
+  const actor = message.mentions.members.first().user || message.author
   const msgEmbed = {
     "color":"0x0099ff",
-    "title":message.author.username,
+    "title":actor.username,
     "image": {
-      "url":message.author.displayAvatarURL(dynamic=true)
+      "url":actor.displayAvatarURL(dynamic=true)
     }
   }
 
