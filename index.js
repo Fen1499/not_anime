@@ -41,7 +41,7 @@ client.on('message', (message) => {
   //command é o arquivo com o nome correspondente, eles seguem um padrão bem simples
   const command = client.commands.get(commandName);
   if(command.args && !args.length) {
-    message.reply("args error :sad:");
+    message.reply("args error \:pensive:");
     //Manter isso aqui por enquanto pra lidar com args error
     //Depois isso aqui pode retornar um help <command>, mas ele não existe ainda
     return;
@@ -51,7 +51,7 @@ client.on('message', (message) => {
     command.execute(message, args);
   } catch (error) {
     console.error(error);
-    message.reply('Error :sad:');
+    message.reply('Error \:pensive:');
   }
 
 
