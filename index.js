@@ -1,4 +1,5 @@
-const config = require('./config.json');
+//const config = require('./config.json');
+require('dotenv').config();
 
 // require file system
 const fs = require('fs');
@@ -31,8 +32,8 @@ for (const file of commandFiles) {
 client.on('message', (message) => {
 
   ///SETUP INICIAL, SEPARA COMMAND DE ARGS
-  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-  const args = message.content.slice(config.prefix.length).split(/ +/);
+  if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
+  const args = message.content.slice(process.env.prefix.length).split(/ +/);
   //shift devia se achamar pop, mas já existe um pop
   const commandName = args.shift().toLowerCase();
 
@@ -58,4 +59,4 @@ client.on('message', (message) => {
 });
 
 // login to Discord with your app's token
-client.login(config.token);
+client.login(process.env.token);

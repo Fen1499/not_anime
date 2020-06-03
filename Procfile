@@ -1,1 +1,1 @@
-worker: node .
+service: node .
